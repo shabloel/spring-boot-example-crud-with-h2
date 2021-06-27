@@ -1,13 +1,15 @@
 # spring-boot-example-crud
 simple crud example project
 
+Data can be loaded with a data.sql and schema.sql or with bootstrap
+
 put post delete and update rest api with a single object, student.
-runs on localhost: 8089
+runs on localhost: 8080
 
 #Endpoints
-Json: http://localhost:8089/v2/api-docs
-Resources: http://localhost:8089/swagger-resources
-ui: http://localhost:8090/swagger-ui.html
+Json: http://localhost:8080/v2/api-docs
+Resources: http://localhost:8080/swagger-resources
+ui: http://localhost:8080/swagger-ui.html
 
 #H2 Database
 http://localhost:8080/h2-console
