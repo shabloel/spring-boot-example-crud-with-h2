@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.exception.BadRequestException;
 import com.example.demo.exception.StudentNotFoundException;
+import com.example.demo.mapper.SourceTargetMapper;
 import com.example.demo.model.Gender;
 import com.example.demo.model.Student;
 import com.example.demo.repositories.StudentRepo;
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
@@ -32,17 +34,12 @@ class StudentServiceImplTest {
     @Mock
     private StudentRepo studentRepo; //we already know studentrepo works, therefore iso @Autowired, we can Mock it.
 
-/*    @ExtendWith(MockitoExtension.class) takes care of this
-    private AutoCloseable autoCloseable;*/
+    @Mock
+    private SourceTargetMapper mapper;
 
-
+    @InjectMocks
     private StudentService studentService;
 
-    @BeforeEach
-    void setUp() {
-        //autoCloseable = MockitoAnnotations.openMocks(this);
-        studentService = new StudentServiceImpl(studentRepo);
-    }
 
 /*    @MockitoExtension.class takes care of this
     @AfterEach
@@ -70,7 +67,7 @@ class StudentServiceImplTest {
         givenStudent.setFirstName("Peppa");
         givenStudent.setLastName("Pig");
         Optional<Student> optionalStudent = Optional.of(givenStudent);
-        given(studentRepo.existsById(1L))
+        given(studentRepo.existsById(id))
                 .willReturn(true);
         //when
         studentService.getStudentById(id);

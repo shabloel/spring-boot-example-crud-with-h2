@@ -13,17 +13,16 @@ import org.springframework.stereotype.Component;
  * @author : christiaan.griffioen
  * @since :  27-6-2021, zo
  **/
-@Component
+/*@Component
 public class DataLoader implements ApplicationRunner {
     private StudentRepo studentRepo;
 
     @Autowired
     public DataLoader(StudentRepo studentRepo) {
         this.studentRepo = studentRepo;
-
     }
 
     public void run(ApplicationArguments args){
         studentRepo.save(new Student("Jan", "Jansen", Gender.MALE, 12, "abc@gmail.com"));
     }
-}
+}*/

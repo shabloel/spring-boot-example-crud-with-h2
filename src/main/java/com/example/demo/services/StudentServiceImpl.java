@@ -1,8 +1,10 @@
 package com.example.demo.services;
 
 import com.example.demo.controllers.StudentController;
+import com.example.demo.dto.StudentDto;
 import com.example.demo.exception.BadRequestException;
 import com.example.demo.exception.StudentNotFoundException;
+import com.example.demo.mapper.SourceTargetMapper;
 import com.example.demo.model.Student;
 import com.example.demo.repositories.StudentRepo;
 import org.slf4j.LoggerFactory;
@@ -14,6 +16,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  * @author : christiaan.griffioen
@@ -21,18 +24,22 @@ import java.util.logging.Logger;
  **/
 
 @Service
-public class StudentServiceImpl implements StudentService {
+public class  StudentServiceImpl implements StudentService {
 
     private final StudentRepo studentRepo;
+    private final SourceTargetMapper mapper;
 
     @Autowired
-    public StudentServiceImpl(StudentRepo studentRepo) {
+    public StudentServiceImpl(final StudentRepo studentRepo, final SourceTargetMapper mapper) {
         this.studentRepo = studentRepo;
+        this.mapper = mapper;
     }
 
     @Override
-    public List<Student> getStudents() {
-        return studentRepo.findAll();
+    public List<StudentDto> getStudents() {
+        return studentRepo.findAll().stream()
+                .map(mapper::studentToStudentDto)
+                .collect(Collectors.toList());
     }
 
     @Override

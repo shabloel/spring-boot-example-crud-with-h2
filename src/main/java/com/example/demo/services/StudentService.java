@@ -1,5 +1,6 @@
 package com.example.demo.services;
 
+import com.example.demo.dto.StudentDto;
 import com.example.demo.model.Student;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
  * @since :  15-6-2021, di
  **/
 public interface StudentService {
-    List<Student> getStudents();
+    List<StudentDto> getStudents();
     Student getStudentById(Long id);
     void addNewStudent(Student student);
     void deleteStudent(Long id);
